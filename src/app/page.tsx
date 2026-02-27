@@ -12,6 +12,7 @@ import { StateContext } from '@/app/store';
 import ConnectButton from '@/components/ui/connectButton';
 import { useGetAccounts } from '@/utils/wallet';
 import OwnerControls from '@/components/OwnerControls';
+import TransferNFT from '@/components/TransferNFT';
 import Footer from '@/components/ui/footer';
 import { BLOCKEXPLORER_URL, DEPLOYED_CONTRACT } from '@/utils/constants';
 
@@ -731,6 +732,14 @@ export default function Mint() {
             	)}
           	</div>
         	</div>
+      	</div>
+
+      	{/* Transfer NFT Section */}
+      	<div className="max-w-6xl mx-auto px-6 mb-12">
+        	<TransferNFT
+          	contractAddress={contractAddress}
+          	account={account}
+        	/>
       	</div>
 
       	{/* Owner Controls Section */}
