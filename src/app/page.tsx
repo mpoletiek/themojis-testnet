@@ -31,6 +31,7 @@ export default function Mint() {
   const [remainingSupply, setRemainingSupply] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { web3Provider, account } = useContext(StateContext);
   const blockExplorerUrl = BLOCKEXPLORER_URL;
 
@@ -452,6 +453,31 @@ export default function Mint() {
               	</a>
             	</div>
           	)}
+
+          	{/* Contract Address */}
+          	<div className="p-4 bg-black/20 rounded-xl border border-white/10 mt-4">
+            	<div className="text-xs text-gray-400 mb-2 font-medium">Contract Address</div>
+            	<div className="flex items-center gap-2">
+              	<a
+                	href={`${blockExplorerUrl}/address/${contractAddress}`}
+                	target="_blank"
+                	rel="noopener noreferrer"
+                	className="text-blue-400 hover:text-blue-300 transition-colors text-xs break-all"
+              	>
+                	{contractAddress}
+              	</a>
+              	<button
+                	onClick={() => {
+                  	navigator.clipboard.writeText(contractAddress);
+                  	setCopied(true);
+                  	setTimeout(() => setCopied(false), 2000);
+                	}}
+                	className="flex-shrink-0 px-2 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-xs text-gray-300 transition-all duration-200"
+              	>
+                	{copied ? '✓ Copied' : '📋 Copy'}
+              	</button>
+            	</div>
+          	</div>
 
           	{/* Connect Wallet Message */}
           	{!account && (
